@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you be my Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fce4ec; /* Light pink background */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow: hidden; /* Prevents scrollbars when button moves */
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #d81b60;
+            margin-bottom: 20px;
+        }
+
+        .gif-container img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+
+        #yes-btn {
+            background-color: #e91e63;
+            color: white;
+        }
+
+        #yes-btn:hover {
+            background-color: #c2185b;
+            transform: scale(1.1);
+        }
+
+        #no-btn {
+            background-color: #fff;
+            color: #e91e63;
+            border: 2px solid #e91e63;
+            position: absolute; /* Allows moving freely */
+        }
+        
+        /* Styles for the success message */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="question"> Arisha Raj, will you be my Valentine?</h1>
+        <div class="gif-container">
+            <img id="main-gif" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmM1YmI5aG5sM2Z4Z212bHR5Zmx6Z212bHR5Zmx6Z212bHR5Zmx6Z212bHR5Zmx6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Bear">
+        </div>
+
+        <div class="btn-group">
+            <button id="yes-btn" onclick="celebrate()">Yes</button>
+            <button id="no-btn" onmouseover="moveButton()" onclick="moveButton()">No</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById("no-btn");
+        const yesBtn = document.getElementById("yes-btn");
+        const question = document.getElementById("question");
+        const mainGif = document.getElementById("main-gif");
+
+        // Function to move the 'No' button randomly
+        function moveButton() {
+            // Get the window size
+            const maxWidth = window.innerWidth - noBtn.offsetWidth;
+            const maxHeight = window.innerHeight - noBtn.offsetHeight;
+
+            // Generate random positions
+            const randomX = Math.random() * maxWidth;
+            const randomY = Math.random() * maxHeight;
+
+            // Apply new position
+            noBtn.style.left = randomX + "px";
+            noBtn.style.top = randomY + "px";
+            
+            // Ensure position is 'absolute' so it moves relative to body/screen
+            noBtn.style.position = "fixed"; 
+        }
+
+        // Function when 'Yes' is clicked
+        function celebrate() {
+            question.innerText = "YAY! I love you! 💖";
+            // Change GIF to celebratory kiss/hug
+            mainGif.src = "https://media.giphy.com/media/Zv896eWn2k2w/giphy.gif"; 
+            
+            // Hide the buttons
+            noBtn.style.display = "none";
+            yesBtn.style.display = "none";
+        }
+    </script>
+</body>
+</html>
